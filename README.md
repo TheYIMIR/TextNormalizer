@@ -40,18 +40,25 @@ This library is available in multiple programming languages, allowing seamless i
 | Language | File Location | Dependencies |
 |----------|---------------|--------------|
 | JavaScript | [`js/textNormalizer.js`](./js/textNormalizer.js) | None |
+| TypeScript | [`typescript/textNormalizer.ts`](./typescript/textNormalizer.ts) | None |
 | Python | [`python/text_normalizer.py`](./python/text_normalizer.py) | None |
 | C# | [`csharp/TextNormalizer.cs`](./csharp/TextNormalizer.cs) | System.Text.RegularExpressions |
 | C++ | [`cpp/TextNormalizer.cpp`](./cpp/TextNormalizer.cpp) | Standard library (regex, string) |
+| Go | [`go/text_normalizer.go`](./go/text_normalizer.go) | regexp, strings |
+| Swift | [`swift/TextNormalizer.swift`](./swift/TextNormalizer.swift) | Foundation |
+| Rust | [`rust/text_normalizer.rs`](./rust/text_normalizer.rs) | regex |
+| Kotlin | [`kotlin/TextNormalizer.kt`](./kotlin/TextNormalizer.kt) | kotlin.text |
 | R | [`r/text_normalizer.R`](./r/text_normalizer.R) | R6, stringr |
 
 ## Installation
 
 Each language implementation can be used independently. Simply integrate the relevant files into your project:
 
-### JavaScript
+### JavaScript/TypeScript
 ```bash
 cp js/textNormalizer.js YOUR_PROJECT_DIR/
+# or for TypeScript
+cp typescript/textNormalizer.ts YOUR_PROJECT_DIR/
 ```
 
 ### Python
@@ -69,6 +76,29 @@ cp csharp/TextNormalizer.cs YOUR_PROJECT_DIR/
 cp cpp/TextNormalizer.h cpp/TextNormalizer.cpp YOUR_PROJECT_DIR/
 ```
 
+### Go
+```bash
+cp go/text_normalizer.go YOUR_PROJECT_DIR/pkg/
+```
+
+### Swift
+```bash
+cp swift/TextNormalizer.swift YOUR_PROJECT_DIR/Sources/
+```
+
+### Rust
+```bash
+# Add to your Cargo.toml
+# text_normalizer = { path = "path/to/text_normalizer" }
+cp rust/text_normalizer.rs YOUR_PROJECT_DIR/src/
+cp rust/Cargo.toml YOUR_PROJECT_DIR/
+```
+
+### Kotlin
+```bash
+cp kotlin/TextNormalizer.kt YOUR_PROJECT_DIR/src/main/kotlin/com/example/textnormalizer/
+```
+
 ### R
 ```bash
 cp r/text_normalizer.R YOUR_PROJECT_DIR/
@@ -78,10 +108,22 @@ cp r/text_normalizer.R YOUR_PROJECT_DIR/
 
 ## Usage
 
+Here are examples of how to use TextNormalizer in various languages:
+
 ### JavaScript
 
 ```javascript
 const TextNormalizer = require('./textNormalizer.js');
+const normalizer = new TextNormalizer();
+
+const normalized = normalizer.normalizeText("Hellooo how areee you *cough* today?");
+console.log(normalized);  // "Hello how are you today?"
+```
+
+### TypeScript
+
+```typescript
+import { TextNormalizer } from './textNormalizer';
 const normalizer = new TextNormalizer();
 
 const normalized = normalizer.normalizeText("Hellooo how areee you *cough* today?");
@@ -122,6 +164,57 @@ int main() {
 }
 ```
 
+### Go
+
+```go
+package main
+
+import (
+    "fmt"
+    "textnormalizer"
+)
+
+func main() {
+    normalizer := textnormalizer.NewTextNormalizer()
+    normalized := normalizer.NormalizeText("Hellooo how areee you *cough* today?")
+    fmt.Println(normalized)  // "Hello how are you today?"
+}
+```
+
+### Swift
+
+```swift
+import Foundation
+
+let normalizer = TextNormalizer()
+let normalized = normalizer.normalizeText("Hellooo how areee you *cough* today?")
+print(normalized)  // "Hello how are you today?"
+```
+
+### Rust
+
+```rust
+use text_normalizer::TextNormalizer;
+
+fn main() {
+    let normalizer = TextNormalizer::new();
+    let normalized = normalizer.normalize_text("Hellooo how areee you *cough* today?");
+    println!("{}", normalized);  // "Hello how are you today?"
+}
+```
+
+### Kotlin
+
+```kotlin
+import com.example.textnormalizer.TextNormalizer
+
+fun main() {
+    val normalizer = TextNormalizer()
+    val normalized = normalizer.normalizeText("Hellooo how areee you *cough* today?")
+    println(normalized)  // "Hello how are you today?"
+}
+```
+
 ### R
 
 ```r
@@ -146,7 +239,7 @@ Each language implementation provides the following core methods with consistent
 | **removeAsterisks** | Remove text enclosed in asterisks |
 | **normalizeCasing** | Fix inconsistent capitalization |
 
-> Note: Method naming follows language conventions (camelCase for JavaScript, snake_case for Python/R, PascalCase for C#/C++)
+> Note: Method naming follows language conventions (camelCase for JavaScript/TypeScript, snake_case for Python/R, PascalCase for C#/C++/Swift, etc.)
 
 ### Advanced Usage
 
