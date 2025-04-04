@@ -1,0 +1,18 @@
+[package]
+name = "text_normalizer"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "A library for normalizing text with unusual writing styles"
+license = "MIT"
+repository = "https://github.com/yourusername/text-normalizer"
+readme = "../README.md"
+keywords = ["text", "normalization", "formatting"]
+categories = ["text-processing"]
+
+[dependencies]
+regex = "1.7.1"
+
+[lib]
+name = "text_normalizer"
+path = "text_normalizer.rs"
